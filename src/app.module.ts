@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { IndividModule } from './individ/individ.module';
 import { Role } from './typeorm/entities/Role';
 import { User } from './typeorm/entities/User';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { User } from './typeorm/entities/User';
       synchronize: true,
     }),
     IndividModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

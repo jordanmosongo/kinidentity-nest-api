@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { User } from './User';
 
 @Entity({ name: 'roles' })
 export class Role {
@@ -8,4 +9,7 @@ export class Role {
 
   @Column({length: 50})
   name: string;
+
+  @OneToMany(() => User, (user) => user.role)
+  users: User[]
 }
