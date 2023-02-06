@@ -7,7 +7,6 @@ import {
   HttpException,
   HttpStatus,
   Param,
-  Patch,
   Post,
   Put,
   UsePipes,
@@ -66,7 +65,12 @@ export class UsersController {
   }
 
   @Delete('/:id')
-  deleteUser(@Param('id') id: string) {
-    return this.usersService.deleteUser(id);
+  async deleteUser(@Param('id') id: string) {
+    try {
+      const deleteResult = await this.usersService.deleteUser(id);
+      return deleteResult
+    } catch (error) {
+      return new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
   }
 }

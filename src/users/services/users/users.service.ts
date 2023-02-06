@@ -28,7 +28,7 @@ export class UsersService {
     this.userRepository.update(id, userData)
     return this.userRepository.findOneBy({id})
   }
-  deleteUser(id: string) {
-    return id;
+  deleteUser(id: string): Promise<unknown> {
+    return this.userRepository.delete(id)
   }
 }
