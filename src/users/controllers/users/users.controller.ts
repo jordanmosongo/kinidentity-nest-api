@@ -29,7 +29,7 @@ export class UsersController {
   }
 
   @Get('/:id')
-  async getUserById(@Param('id') id: string) {
+  async getUserById(@Param('id') id: number) {
     try {
       const user = await this.usersService.findUserById(id);
       if(!user) {
@@ -52,7 +52,7 @@ export class UsersController {
   }
 
   @Put('/:id')
-  async updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
     try {
       const updatedUser = await this.usersService.updateUser(id, updateUserDto);
       if(!updatedUser) {
@@ -65,7 +65,7 @@ export class UsersController {
   }
 
   @Delete('/:id')
-  async deleteUser(@Param('id') id: string) {
+  async deleteUser(@Param('id') id: number) {
     try {
       const deleteResult = await this.usersService.deleteUser(id);
       return deleteResult

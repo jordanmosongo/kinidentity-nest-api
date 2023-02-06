@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 export type UserType = {
-  id?: string,
+  id?: number,
   name: string;
   lastname: string;
   firstname: string;

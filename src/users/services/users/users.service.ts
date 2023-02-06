@@ -13,22 +13,25 @@ export class UsersService {
   fetchUsers(): Promise<User[]> {
     return this.userRepository.find()
   }
-  findUserById(userId: string): Promise<User> {
+  findUserById(userId: number): Promise<User> {
     return this.userRepository.findOne({
       where: {
         id: userId
-      }
+      },
+      relations: {
+        role: true
+      }            
     });
   }
   createUser(userData: UserType): Promise<User> {
     const newUser = this.userRepository.create(userData);
     return this.userRepository.save(newUser)
   }
-  updateUser(id: string, userData: UserType): Promise<User> {    
+  updateUser(id: number, userData: UserType): Promise<User> {    
     this.userRepository.update(id, userData)
     return this.userRepository.findOneBy({id})
   }
-  deleteUser(id: string): Promise<unknown> {
+  deleteUser(id: number): Promise<unknown> {
     return this.userRepository.delete(id)
   }
 }
