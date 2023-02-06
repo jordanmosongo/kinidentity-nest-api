@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module, NestModule } from '@nestjs/common';
 import { MiddlewareConsumer } from '@nestjs/common/interfaces/middleware';
 import { AuthMiddleware } from 'src/middlewares/auth/auth.middleware';

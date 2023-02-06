@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsNotEmpty } from "class-validator";
+import { IsNotEmpty, IsUUID } from "class-validator";
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -14,5 +14,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   gender: string;
 
-  role: string;
+  @IsUUID()
+  roleId: string;
 }
