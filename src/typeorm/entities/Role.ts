@@ -4,8 +4,8 @@ import { User } from './User';
 
 @Entity({ name: 'roles' })
 export class Role {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @Column({length: 50})
   name: string;

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/typeorm/entities/User';
@@ -9,19 +10,28 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
-  fetchUsers(): UserType[] {
-    return [];
+  fetchUsers(): Promise<User[]> {
+    return this.userRepository.find()
   }
-  findUserById(id: string) {
-    return id;
+  findUserById(userId: number): Promise<User> {
+    return this.userRepository.findOne({
+      where: {
+        id: userId
+      },
+      relations: {
+        role: true
+      }            
+    });
   }
-  createUser(userData: UserType) {
-    return userData;
+  createUser(userData: UserType): Promise<User> {
+    const newUser = this.userRepository.create(userData);
+    return this.userRepository.save(newUser)
   }
-  updateUser(id: string) {
-    return 'User updated !' + id;
+  updateUser(id: number, userData: UserType): Promise<User> {    
+    this.userRepository.update(id, userData)
+    return this.userRepository.findOneBy({id})
   }
-  deleteUser(id: string) {
-    return id;
+  deleteUser(id: number): Promise<unknown> {
+    return this.userRepository.delete(id)
   }
 }

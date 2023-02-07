@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { AuthMiddleware } from './auth.middleware';
 
 describe('AuthMiddleware', () => {
