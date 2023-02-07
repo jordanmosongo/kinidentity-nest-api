@@ -10,6 +10,9 @@ export class Role {
   @Column({length: 50})
   name: string;
 
-  @OneToMany(() => User, (user) => user.role)
+  @OneToMany(() => User, (user) => user.role, {
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+  })
   users: User[]
 }

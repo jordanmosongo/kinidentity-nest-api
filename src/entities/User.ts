@@ -17,9 +17,14 @@ export class User {
   firstname: string;
 
   @Column({length: 10})
-  gender: string
+  gender: string;
 
-  @ManyToOne(() => Role, (role) => role.users)
+  @Column({length:25, unique: true})
+  username: string;
+  
+  @Column()
+  password: string;  
+
+  @ManyToOne(() => Role, (role) => role.users, {onUpdate: 'CASCADE'})
   role: Role
-
 }

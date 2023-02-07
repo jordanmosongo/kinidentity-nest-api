@@ -12,8 +12,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
-import { UpdateUserDto } from 'src/users/dtos/UpdateUserDto';
+import { CreateUserDto } from 'src/dtos/users/CreateUser.dto';
+import { UpdateUserDto } from 'src/dtos/users/UpdateUserDto';
 import { UsersService } from 'src/users/services/users/users.service';
 @Controller('users')
 export class UsersController {
@@ -45,9 +45,12 @@ export class UsersController {
   @UsePipes(new ValidationPipe())
   async createUser(@Body() createUserDto: CreateUserDto) {
     try {
-      return await this.usersService.createUser(createUserDto);
+      const createdUser = await this.usersService.createUser(createUserDto);
+      console.log('createdUser', createdUser)
+      return createdUser
     } catch (error) {
-      return new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR)
+      console.log(error)
+      return new HttpException("Something went bad !", HttpStatus.INTERNAL_SERVER_ERROR)
     }
   }
 
