@@ -1,11 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { IndividModule } from './individ/individ.module';
-import { Role } from './typeorm/entities/Role';
-import { User } from './typeorm/entities/User';
+import { Role } from './entities/Role';
+import { User } from './entities/User';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -23,7 +21,7 @@ import { UsersModule } from './users/users.module';
     IndividModule,
     UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

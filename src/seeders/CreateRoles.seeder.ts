@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Role } from 'src/typeorm/entities/Role';
+import { Role } from 'src/entities/Role';
 import { Connection } from 'typeorm';
 import { Seeder, Factory } from 'typeorm-seeding';
 

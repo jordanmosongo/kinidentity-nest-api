@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/typeorm/entities/User';
+import { User } from 'src/entities/User';
 import { UserType } from 'src/utils/types/user.type';
 import { Repository } from 'typeorm';
 
@@ -19,7 +19,7 @@ export class UsersService {
         id: userId
       },
       relations: {
-        role: true
+        role: true,
       }            
     });
   }
