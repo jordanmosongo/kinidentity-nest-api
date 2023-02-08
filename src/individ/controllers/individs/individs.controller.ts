@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { CreateIndividDto } from 'src/individ/dtos/CreateIndivid.dto';
 import { IndividsService } from 'src/individ/services/individs/individs.service';
-import { IndividType } from 'src/utils/types/individ-type';
+import { IndividType } from 'src/types/individ-type';
 
 @Controller('individs')
 export class IndividsController {

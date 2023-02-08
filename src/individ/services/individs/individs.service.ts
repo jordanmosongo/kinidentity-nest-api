@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { IndividType } from 'src/utils/types/individ-type';
+import { IndividType } from 'src/types/individ-type';
 
 @Injectable()
 export class IndividsService {

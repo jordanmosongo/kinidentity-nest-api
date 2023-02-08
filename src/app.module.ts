@@ -5,19 +5,21 @@ import { IndividModule } from './individ/individ.module';
 import { Role } from './entities/Role';
 import { User } from './entities/User';
 import { UsersModule } from './users/users.module';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
+      host: process.env.HOST,
+      port: parseInt(process.env.PORT),
       username: 'root',
-      password: '',
-      database: 'kinidentity',
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [User, Role],
       synchronize: true,
-    }),
+    }),    
     IndividModule,
     UsersModule,
   ],
