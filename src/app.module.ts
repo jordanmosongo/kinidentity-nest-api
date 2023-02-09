@@ -6,6 +6,7 @@ import { Role } from './entities/Role';
 import { User } from './entities/User';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { FamilyModule } from './family/family.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -24,6 +25,7 @@ dotenv.config();
     IndividModule,
     UsersModule,
     AuthModule,
+    FamilyModule,
   ],
   controllers: [],
   providers: [],
