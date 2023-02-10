@@ -6,6 +6,7 @@ export type UserType = {
   firstname: string;
   gender: string;
   roleId: number;
+  familyId: number;
   username: string;
   password: string;
 };

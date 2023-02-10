@@ -40,7 +40,7 @@ export class FamilyController {
   @Get(':id')
   async findOne(@Param('id') id: number) {
     try {
-      const family = await this.familyService.findOne(id);
+      const family = await this.familyService.findOne(id, true);
       if (typeof family === 'boolean') {
         return new HttpException('No family found !', HttpStatus.NOT_FOUND);
       }

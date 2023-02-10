@@ -46,11 +46,10 @@ export class UsersController {
   async createUser(@Body() createUserDto: CreateUserDto) {
     try {
       const createdUser = await this.usersService.createUser(createUserDto);
-      console.log('createdUser', createdUser)
-      return createdUser
+      return createdUser;
     } catch (error) {
       console.log(error)
-      return new HttpException("Something went bad !", HttpStatus.INTERNAL_SERVER_ERROR)
+      return new HttpException("Something went bad !", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 

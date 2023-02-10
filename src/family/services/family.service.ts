@@ -19,14 +19,20 @@ export class FamilyService {
     return this.familyRepository.find();
   }
 
-  async findOne(id: number): Promise<Family | boolean> {
+  async findOne(id: number, withUsers: boolean): Promise<Family | boolean> {
     const family = await this.familyRepository.findOne({
       where: {
         id: id,
       },
+      relations: {
+        users: true,
+      },
     });
     if (!family) {
       return false;
+    }
+    if (!withUsers) {
+      delete family.users;
     }
     return family;
   }
@@ -35,12 +41,12 @@ export class FamilyService {
     id: number,
     updateFamilyDto: UpdateFamilyDto,
   ): Promise<Family | boolean> {
-    const family = await this.findOne(id);
+    const family = await this.findOne(id, false);
     if (!family) {
       return false;
     }
     this.familyRepository.update(id, updateFamilyDto);
-    return this.findOne(id);
+    return this.findOne(id, false);
   }
 
   remove(id: number): Promise<unknown> {

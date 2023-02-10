@@ -17,6 +17,9 @@ export class CreateUserDto {
   @IsNumber()
   roleId: number;
 
+  @IsNumber()
+  familyId: number;
+
   @IsString()
   username: string;
 

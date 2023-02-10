@@ -7,13 +7,15 @@ import { User } from 'src/entities/User';
 import { UserType } from 'src/types/user.type';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { FamilyService } from 'src/family/services/family.service';
+import { Family } from 'src/family/entities/family.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     @InjectRepository(Role) private roleRepository: Repository<Role>,
-    /* private jwtService: JwtService */   
+    private familyService: FamilyService  
   ) {}
   fetchUsers(): Promise<User[]> {
     return this.userRepository.find()
@@ -33,14 +35,19 @@ export class UsersService {
     return this.roleRepository.findOneBy({id: roleId})
   }
  
-  async createUser(userData: UserType): Promise<User> {
+  async createUser(userData: UserType): Promise<User | boolean> {
     try {
       const role = await this.findRoleById(userData.roleId)
+      const family = await this.familyService.findOne(userData.familyId, false) as Family;
+
+      if (!family) {
+        return false;
+      }
 
       const hashedPassword = await bcrypt.hash(userData.password, 8);
       userData.password = hashedPassword;
 
-      const newUser = this.userRepository.create({...userData, role});
+      const newUser = this.userRepository.create({...userData, role, family});
       return this.userRepository.save(newUser)
     } catch (error) {
       console.log(error);
@@ -51,10 +58,13 @@ export class UsersService {
     try {
     const dataToUpdate = {
       ...userData, 
-      role: await this.findRoleById(userData.roleId)
+      role: await this.findRoleById(userData.roleId),
+      family: await this.familyService.findOne(userData.familyId, false) as Family,
     }
 
     delete dataToUpdate.roleId;
+    delete dataToUpdate.familyId;
+    
     this.userRepository.update(id, dataToUpdate)
 
     return this.userRepository.findOneBy({id})
