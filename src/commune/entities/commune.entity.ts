@@ -1,5 +1,12 @@
 import { District } from 'src/district/entities/district.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Quarter } from 'src/quarter/entities/quarter.entity';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'communes' })
 export class Commune {
@@ -11,4 +18,7 @@ export class Commune {
 
   @ManyToOne(() => District, (district) => district.communes)
   district: District;
+
+  @OneToMany(() => Quarter, (quarter) => quarter.commune)
+  quarters: Quarter[];
 }

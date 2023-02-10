@@ -13,6 +13,8 @@ import { DistrictModule } from './district/district.module';
 import { District } from './district/entities/district.entity';
 import { CommuneModule } from './commune/commune.module';
 import { Commune } from './commune/entities/commune.entity';
+import { QuarterModule } from './quarter/quarter.module';
+import { Quarter } from './quarter/entities/quarter.entity';
 
 dotenv.config();
 @Module({
@@ -24,7 +26,7 @@ dotenv.config();
       username: 'root',
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
-      entities: [User, Role, Family, District, Commune],
+      entities: [User, Role, Family, District, Commune, Quarter],
       synchronize: true,
     }),    
     IndividModule,
@@ -33,6 +35,7 @@ dotenv.config();
     FamilyModule,
     DistrictModule,
     CommuneModule,
+    QuarterModule,
   ],
   controllers: [],
   providers: [],
