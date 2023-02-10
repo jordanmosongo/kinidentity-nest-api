@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { FamilyModule } from './family/family.module';
 import * as dotenv from 'dotenv';
+import { Family } from './family/entities/family.entity';
 
 dotenv.config();
 @Module({
@@ -19,7 +20,7 @@ dotenv.config();
       username: 'root',
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
-      entities: [User, Role],
+      entities: [User, Role, Family],
       synchronize: true,
     }),    
     IndividModule,

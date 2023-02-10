@@ -9,7 +9,7 @@ export class Family {
   @Column()
   name: string;
 
-  @Column()
+  @Column({default: 'none'})
   icon: string;
 }
 

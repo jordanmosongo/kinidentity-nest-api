@@ -13,7 +13,6 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { CreateUserDto } from 'src/dtos/users/CreateUser.dto';
-import { LoginUserDto } from 'src/dtos/users/LoginUserDto';
 import { UpdateUserDto } from 'src/dtos/users/UpdateUserDto';
 import { UsersService } from 'src/users/services/users/users.service';
 @Controller('users')
@@ -52,17 +51,6 @@ export class UsersController {
     } catch (error) {
       console.log(error)
       return new HttpException("Something went bad !", HttpStatus.INTERNAL_SERVER_ERROR)
-    }
-  }
-
-  @Post('/login')
-  @UsePipes(new ValidationPipe())
-  async login(@Body() loginUserDto: LoginUserDto) {
-    try {
-      const token = await this.usersService.signIn(loginUserDto)
-      return token;
-    } catch (error) {
-      return new HttpException("Something went bad !", HttpStatus .INTERNAL_SERVER_ERROR)
     }
   }
 

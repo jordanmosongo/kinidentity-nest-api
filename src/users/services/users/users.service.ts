@@ -6,7 +6,6 @@ import { Role } from 'src/entities/Role';
 import { User } from 'src/entities/User';
 import { UserType } from 'src/types/user.type';
 import { Repository } from 'typeorm';
-import { SignInType } from 'src/types/signin-type';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
@@ -46,41 +45,6 @@ export class UsersService {
     } catch (error) {
       console.log(error);
     } 
-  }
-
-  async signIn(credentials: SignInType): Promise<string | boolean> {
-
-    try {
-      const user = await this.userRepository.findOne({
-        where: {
-          username: credentials.username
-        },
-        relations: {
-          role: true
-        }
-      })
-      if(!user) {
-        return false;
-      }
-      const hasMatched = await bcrypt.compare(credentials.password, user.password);
-      
-      if(!hasMatched) {
-        return false
-      }
-      console.log("before sign");
-      
-      /* const token  = this.jwtService.sign(user, {
-        secret: 'ThisIsAVeryLongJwtSecretKeyForAuthentification',
-        expiresIn: '1d'
-      })
-      console.log("token =>", token);
-      
-      return token    */
-    
-    } catch (error) {
-      return error
-    }
-
   }
 
   async updateUser(id: number, userData: UserType): Promise<User> { 
