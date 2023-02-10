@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { Family } from 'src/family/entities/family.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Role } from './Role';
 
@@ -26,5 +27,8 @@ export class User {
   password: string;  
 
   @ManyToOne(() => Role, (role) => role.users, {onUpdate: 'CASCADE'})
-  role: Role
+  role: Role;
+
+  @ManyToOne(() => Family, (family) => family.users)
+  family: Family
 }
