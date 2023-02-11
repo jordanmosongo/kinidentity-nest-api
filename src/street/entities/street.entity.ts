@@ -1,5 +1,12 @@
+import { Parcel } from 'src/parcel/entities/parcel.entity';
 import { Quarter } from 'src/quarter/entities/quarter.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'streets' })
 export class Street {
@@ -11,4 +18,7 @@ export class Street {
 
   @ManyToOne(() => Quarter, (quarter) => quarter.streets)
   quarter: Quarter;
+
+  @OneToMany(() => Parcel, (parcel) => parcel.street)
+  parcels: Parcel[];
 }

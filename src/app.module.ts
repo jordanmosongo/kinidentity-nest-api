@@ -10,6 +10,7 @@ import { DistrictModule } from './district/district.module';
 import { CommuneModule } from './commune/commune.module';
 import { QuarterModule } from './quarter/quarter.module';
 import { StreetModule } from './street/street.module';
+import { ParcelModule } from './parcel/parcel.module';
 
 dotenv.config();
 @Module({
@@ -32,6 +33,7 @@ dotenv.config();
     CommuneModule,
     QuarterModule,
     StreetModule,
+    ParcelModule,
   ],
   controllers: [],
   providers: [],
