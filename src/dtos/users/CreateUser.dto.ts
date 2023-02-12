@@ -25,4 +25,7 @@ export class CreateUserDto {
 
   @IsString()
   password: string;
+
+  @IsNumber()
+  parcelId: number
 }

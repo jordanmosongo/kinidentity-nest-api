@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Family } from 'src/family/entities/family.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Parcel } from 'src/parcel/entities/parcel.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { Role } from './Role';
 
 @Entity({ name: 'users' })
@@ -30,5 +31,9 @@ export class User {
   role: Role;
 
   @ManyToOne(() => Family, (family) => family.users)
-  family: Family
+  family: Family;
+
+  @ManyToMany(() => Parcel)
+  @JoinTable()
+  parcels: Parcel[];
 }

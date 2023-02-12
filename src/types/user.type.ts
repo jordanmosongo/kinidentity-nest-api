@@ -9,4 +9,5 @@ export type UserType = {
   familyId: number;
   username: string;
   password: string;
+  parcelId?: number;
 };
